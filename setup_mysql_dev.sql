@@ -1,6 +1,8 @@
--- Create daba base for development hbnb_dev_db
+-- script that prepares a MySQL server hbnb_test_db.
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
-Create USER IF NOT EXISTS hbnb_dev@localhost password 'hbnb_dev_pwd';
-GRANT ALL ON hbnb_dev_db.* TO hbnb_dev@localhost;
-GRANT SELECT ON performance_schema.* TO hbnb_dev@localhost;
+CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost';
+SET PASSWORD FOR 'hbnb_dev'@'localhost' = 'hbnb_dev_pwd';
+GRANT USAGE ON *.* TO 'hbnb_dev'@'localhost';
+GRANT SELECT ON `performance_schema`.* TO 'hbnb_test'@'localhost';
+GRANT ALL PRIVILEGES ON `hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
 FLUSH PRIVILEGES;
