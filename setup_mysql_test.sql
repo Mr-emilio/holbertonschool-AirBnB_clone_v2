@@ -1,3 +1,4 @@
+--Create databasesfor user new_user
 CREATE DATABASE IF NOT EXISTS hbnb_test_db;
 CREATE USER IF NOT EXISTS hbnb_test@localhost IDENTIFIED password 'hbnb_test_pwd';
 GRANT ALL ON hbnb_test_db.* TO hbnb_test@localhost;
