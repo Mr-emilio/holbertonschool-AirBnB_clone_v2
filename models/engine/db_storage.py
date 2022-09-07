@@ -36,18 +36,11 @@ class DBStorage:
         """Query on the current database session"""
         newdict = {}
         for clase in alvclasses:
-            print(clase)
-            print(cls)
-            if cls:
-                print("entro")
+            if cls is None or cls:
                 obj = self.__session.query(alvclasses[clase]).all()
-                print("Aqui el objeto")
-                print(obj)
                 for instance in obj:
-                    print(instance)
                     key = instance.__class__.__name__ + '.' + instance.id
                     newdict[key] = instance
-        print(newdict)
         return newdict
 
     def new(self, obj):
