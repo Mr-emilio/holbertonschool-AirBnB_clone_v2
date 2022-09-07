@@ -35,6 +35,7 @@ class DBStorage:
         newdict = {}
         for clase in self.alvclasses:
             print(clase)
+            print(cls)
             if cls is None or cls is self.alvclasses[clase] or cls is clase:
                 print("entro")
                 obj = self.__session.query(self.alvclasses[clase]).all()
