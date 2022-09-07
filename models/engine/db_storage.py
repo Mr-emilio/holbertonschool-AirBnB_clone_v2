@@ -31,16 +31,15 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        '''Returns a dictionary of models currently in storage'''
-        new_dict = {}
-        if cls is None:
-            for key, value in self.alvclasses.items():
-                for obj in self.__session.query(value).all():
-                    new_dict[obj.__class__.__name__ + '.' + obj.id] = obj
-        else:
-            for obj in self.__session.query('City').all():
-                new_dict[obj.__class__.__name__ + '.' + obj.id] = obj
-        return new_dict
+        """Query on the current database session"""
+        newdict = {}
+        for clase in self.classes:
+            if cls is None or cls is self.classes[clase] or cls is clase:
+                obj = self.__session.query(self.classes[clase]).all()
+                for instance in obj:
+                    key = instance.__class__.__name__ + '.' + instance.id
+                    newdict[key] = instance
+        return newdict
 
     def new(self, obj):
         '''Adds new object to storage dictionary'''
