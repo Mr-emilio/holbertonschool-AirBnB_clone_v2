@@ -133,16 +133,21 @@ class HBNBCommand(cmd.Cmd):
         print(new_instance.id)
         storage.save()
 
-    def update_instance(self, args,instance):
+    def update_instance(self, args, instance):
         """Transform a string in dictionary"""
         for idx in range(1, len(args)):
-            if "=" in args[idx]:
-                key, value = args[idx].split("=")
-                if value[0] == '"' and value[-1] == '"':
-                    value = value.strip("\"'").replace('_', ' ')
-                if key in HBNBCommand.types:
-                    value = HBNBCommand.types[key](value)
-                setattr(instance, key, value)
+            key, value = args[idx].split('=')
+            if value[0] is value[-1] in ['"', "'"]:
+                value = value.strip("\"'").replace('_', ' ')
+            else:
+                try:
+                    value = int(value)
+                except ValueError:
+                    try:
+                        value = float(value)
+                    except ValueError:
+                        continue
+            setattr(instance, key, value)
 
     def help_create(self):
         """ Help information for the create method """
