@@ -38,7 +38,7 @@ class DBStorage:
         for clase in alvclasses:
             print(clase)
             print(cls)
-            if cls is None or cls is alvclasses[clase] or cls is clase:
+            if cls is None or cls is clase:
                 print("entro")
                 obj = self.__session.query(alvclasses[clase]).all()
                 print("Aqui el objeto")
