@@ -229,14 +229,17 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-                print_list = storage.all(arg)
+                for k, v in storage.all().items():
+                    if k.split('.')[0] == arg:
+                        print_list.append(str(v))
             else:
                 for k, v in storage._FileStorage__objects.items():
                     if k.split('.')[0] == arg:
                         print_list.append(str(v))
         else:
             if os.getenv('HBNB_TYPE_STORAGE') == 'db':
-                print_list = storage.all()
+                for k, v in storage.all().items():
+                    print_list.append(str(v))
             else:
                 for k, v in storage._FileStorage__objects.items():
                     print_list.append(str(v))
