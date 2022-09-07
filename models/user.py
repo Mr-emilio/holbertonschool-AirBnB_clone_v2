@@ -7,6 +7,7 @@ from models.base_model import BaseModel, Base
 
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
+
 class User(BaseModel, Base):
     """ USer class inherits from BaseModel"""
     __tablename__ = 'users'
@@ -15,8 +16,6 @@ class User(BaseModel, Base):
         password = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
-        places = relationship("Place", backref="user")
-        reviews = relationship("Review", backref="user")
 
     else:
         email = ""
