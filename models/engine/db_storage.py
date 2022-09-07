@@ -36,9 +36,11 @@ class DBStorage:
         for clase in self.alvclasses:
             if cls is None or cls is self.alvclasses[clase] or cls is clase:
                 obj = self.__session.query(self.alvclasses[clase]).all()
+                print(obj)
                 for instance in obj:
                     key = instance.__class__.__name__ + '.' + instance.id
                     newdict[key] = instance
+        print(newdict)
         return newdict
 
     def new(self, obj):
