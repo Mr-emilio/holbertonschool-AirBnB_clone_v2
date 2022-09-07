@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from os import getenv
 
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
-class Amenity(BaseModel):
+class Amenity(BaseModel, Base):
     """class amenity"""
     __tablename__ = 'amenities'
     if HBNB_TYPE_STORAGE == "db":
