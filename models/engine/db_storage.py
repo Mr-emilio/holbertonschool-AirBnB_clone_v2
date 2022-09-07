@@ -38,7 +38,7 @@ class DBStorage:
                 for obj in self.__session.query(value).all():
                     new_dict[obj.__class__.__name__ + '.' + obj.id] = obj
         else:
-            for obj in self.__session.query(cls).all():
+            for obj in self.__session.query('State').all():
                 new_dict[obj.__class__.__name__ + '.' + obj.id] = obj
         return new_dict
 
