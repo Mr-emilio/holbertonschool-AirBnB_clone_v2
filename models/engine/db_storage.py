@@ -13,8 +13,7 @@ from models.amenity import Amenity
 from models.user import User
 
 
-alvclasses = {"State": State, "City": City, "User": User,
-              "Place": Place, "Review": Review, "Amenity": Amenity}
+alvclasses = {"State": State, "City": City, "User": User, "Place": Place}
 
 
 class DBStorage:
