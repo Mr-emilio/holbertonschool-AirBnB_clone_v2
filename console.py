@@ -11,6 +11,8 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import os
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -221,12 +223,18 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
+            if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+                print_list = storage.all(args)
+            else:
+                for k, v in storage._FileStorage__objects.items():
+                    if k.split('.')[0] == args:
+                        print_list.append(str(v))
         else:
-            for k, v in storage._FileStorage__objects.items():
-                print_list.append(str(v))
+            if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+                print_list = storage.all()
+            else:
+                for k, v in storage._FileStorage__objects.items():
+                    print_list.append(str(v))
 
         print(print_list)
 
