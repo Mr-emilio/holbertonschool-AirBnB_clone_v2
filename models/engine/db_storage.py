@@ -13,9 +13,11 @@ from models.amenity import Amenity
 from models.user import User
 
 
+alvclasses = {"State": State, "City": City}
+
+
 class DBStorage:
     '''Class db storage'''
-    alvclasses = {"State": State, "City": City}
     __engine = None
     __session = None
 
@@ -33,12 +35,12 @@ class DBStorage:
     def all(self, cls=None):
         """Query on the current database session"""
         newdict = {}
-        for clase in self.alvclasses:
+        for clase in alvclasses:
             print(clase)
             print(cls)
-            if cls is None or cls is self.alvclasses[clase] or cls is clase:
+            if cls is None or cls is alvclasses[clase] or cls is clase:
                 print("entro")
-                obj = self.__session.query(self.alvclasses[clase]).all()
+                obj = self.__session.query(alvclasses[clase]).all()
                 print("Aqui el objeto")
                 print(obj)
                 for instance in obj:
