@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
 
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
@@ -24,4 +24,3 @@ class State(BaseModel):
             if value.state_id == self.id:
                 cities.append(value)
         return cities
-        
