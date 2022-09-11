@@ -25,8 +25,8 @@ class BaseModel:
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if key != '__class__':
                     setattr(self, key, value)
-            if kwargs.get("create_at") is None:
-                 self.created_at = datetime.now()
+            if kwargs.get("created_at") is None:
+                self.created_at = datetime.now()
             if kwargs.get("updated_at") is None:
                 self.updated_at = datetime.now()
             if kwargs.get("id") is None:
