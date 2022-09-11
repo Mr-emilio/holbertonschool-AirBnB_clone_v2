@@ -25,12 +25,6 @@ class BaseModel:
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if key != '__class__':
                     setattr(self, key, value)
-            if kwargs.get("created_at") is None:
-                self.created_at = datetime.now()
-            if kwargs.get("updated_at") is None:
-                self.updated_at = datetime.now()
-            if kwargs.get("id") is None:
-                self.id = str(uuid.uuid4())
 
     def __str__(self):
         """Returns a string representation of the instance"""
@@ -39,9 +33,10 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
+        from models import storage
         self.updated_at = datetime.now()
-        models.storage.new(self)
-        models.storage.save()
+        storage.new(self)
+        storage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
