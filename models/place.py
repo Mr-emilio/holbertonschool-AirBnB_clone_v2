@@ -10,16 +10,16 @@ from os import getenv
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 if getenv("HBNB_TYPE_STORAGE") == "db":
     place_amenity = Table('place_amenity', Base.metadata,
-                      Column('place_id', String(60),
-                             ForeignKey('places.id', onupdate='CASCADE',
-                                        ondelete='CASCADE'),
-                             primary_key=True,
-                             nullable=False),
-                      Column('amenity_id', String(60),
-                             ForeignKey('amenities.id', onupdate='CASCADE',
-                                        ondelete='CASCADE'),
-                             primary_key=True,
-                             nullable=False))
+                          Column('place_id', String(60),
+                                 ForeignKey('places.id', onupdate='CASCADE',
+                                            ondelete='CASCADE'),
+                                 primary_key=True,
+                                 nullable=False),
+                          Column('amenity_id', String(60),
+                                 ForeignKey('amenities.id', onupdate='CASCADE',
+                                            ondelete='CASCADE'),
+                                 primary_key=True,
+                                 nullable=False))
 
 
 class Place(BaseModel, Base):
@@ -37,11 +37,11 @@ class Place(BaseModel, Base):
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
         reviews = relationship("Review", cascade="all,delete",
-                backref=backref("place", cascade="all,delete"),
-                passive_deletes=True)
+                               backref=backref("place", cascade="all,delete"),
+                               passive_deletes=True)
         amenities = relationship("Amenity", secondary="place_amenity",
-                back_populates="place_amenities",
-                viewonly=False)
+                                 viewonly=False,
+                                 back_populates="place_amenities")
     else:
         city_id = ""
         user_id = ""
@@ -54,7 +54,6 @@ class Place(BaseModel, Base):
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
-
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
