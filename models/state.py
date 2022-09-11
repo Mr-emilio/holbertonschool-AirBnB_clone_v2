@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
+from models.city import City
 from os import getenv
+import models
 
-
+HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
 class State(BaseModel, Base):
     """ State class """
