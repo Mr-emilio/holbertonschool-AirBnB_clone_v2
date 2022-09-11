@@ -56,7 +56,7 @@ class Place(BaseModel, Base):
         amenity_ids = []
 
 
-    if HBNB_TYPE_STORAGE == "db":
+    if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def reviews(self):
             """getter attribute returns the list of Review instances"""
