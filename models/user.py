@@ -8,7 +8,7 @@ from models.base_model import BaseModel, Base
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
 
-class User(BaseModel, Base):
+class User(BaseModel, Base if (getenv("HBNB_TYPE_STORAGE")=="db") else object):
     """ USer class inherits from BaseModel"""
     __tablename__ = 'users'
     if HBNB_TYPE_STORAGE == "db":
