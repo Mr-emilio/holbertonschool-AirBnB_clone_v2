@@ -8,7 +8,7 @@ from os import getenv
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
 
-class Review(BaseModel, Base if (getenv("HBNB_TYPE_STORAGE")=="db") else object):
+class Review(BaseModel, Base):
     """ Review classto store review information """
     __tablename__ = 'reviews'
     if HBNB_TYPE_STORAGE == "db":
@@ -19,7 +19,3 @@ class Review(BaseModel, Base if (getenv("HBNB_TYPE_STORAGE")=="db") else object)
         place_id = ""
         user_id = ""
         text = ""
-
-    def __init__(self, *args, **kwargs):
-        """initializes Review"""
-        super().__init__(*args, **kwargs)
