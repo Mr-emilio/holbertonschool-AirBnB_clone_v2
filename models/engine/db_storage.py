@@ -14,7 +14,7 @@ from models.user import User
 
 
 alvclasses = {"State": State, "City": City, "User": User, "Place": Place,
-              "Review": Review, "Review":Review}
+              "Review": Review, "Amenity": Amenity}
 
 
 class DBStorage:
