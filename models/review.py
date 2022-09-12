@@ -8,7 +8,7 @@ from os import getenv
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
 
-class Review(BaseModel, Base):
+class Review(BaseModel, Base if (getenv("HBNB_TYPE_STORAGE")=="db") else object):
     """ Review classto store review information """
     __tablename__ = 'reviews'
     if HBNB_TYPE_STORAGE == "db":
