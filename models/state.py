@@ -8,7 +8,7 @@ from os import getenv
 
 
 
-class State(BaseModel, Base):
+class State(BaseModel, Base if (getenv("HBNB_TYPE_STORAGE")=="db") else object):
     """ State class """
     __tablename__ = 'states'
     if getenv('HBNB_TYPE_STORAGE') == 'db':
