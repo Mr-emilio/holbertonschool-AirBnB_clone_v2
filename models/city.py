@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship
 HBNB_TYPE_STORAGE = getenv('HBNB_TYPE_STORAGE')
 
 
-class City(BaseModel, Base):
+class City(BaseModel, Base if (getenv("HBNB_TYPE_STORAGE")=="db") else object):
     """ The city class, contains state ID and name """
     __tablename__ = 'cities'
     if HBNB_TYPE_STORAGE == "db":
